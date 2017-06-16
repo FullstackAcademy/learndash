@@ -1,0 +1,41 @@
+{
+  "name": "learndash",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "watch": "watchify -g brfs -v -o bundle.js index.js",
+    "build": "browserify -g brfs -o bundle.js index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "browserify": {
+    "transform": [
+      "babelify",
+      "brfs"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babelify": "^7.3.0",
+    "brfs": "^1.4.3",
+    "browserify": "^14.4.0",
+    "eslint": "^4.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "firebase": "^4.1.2",
+    "googleapis": "^19.0.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "watchify": "^3.9.0"
+  }
+}

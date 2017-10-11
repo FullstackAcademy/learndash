@@ -9,12 +9,12 @@ import fire from './firebase'
 
 import axios from 'axios'
 
-const API_KEY = 'AIzaSyCXto9gID3mK91DuZqujXhSbQghcOyas7M'  // browser-safe key
+const API_KEY = 'AIzaSyCXto9gID3mK91DuZqujXhSbQghcOyas7M' // browser-safe key
 
 const withToken = func => (...args) => new Promise((resolve, reject) =>
   chrome.identity.getAuthToken({interactive: true}, token => token ? resolve(func(token, ...args)) : reject(token)))
 
-const cohortRe = /\d\d\d\d-(FSA|GH)-(NY|CHI|RM)-(Sr|Jr)?/
+const cohortRe = /\d\d\d\d-([A-Z]+)-([A-Z]+)-(Sr|Jr)/
 
 const listCalendars = withToken(token =>
   axios.get(`https://content.googleapis.com/calendar/v3/users/me/calendarList?key=${API_KEY}`, {
@@ -73,33 +73,6 @@ class Calendars extends React.Component {
     </div>
   }
 }
-
-// chrome.identity.getAuthToken({interactive: true}, token => {
-//   .then(console.log)
-//   const credential = fire.auth.GoogleAuthProvider.credential(null, token)
-//   fire.auth().signInWithCredential(credential)
-// })
-
-// var google = new fire.auth.GoogleAuthProvider()
-// manifest.oauth2.scopes.forEach(scope => google.addScope(scope))
-fire.auth().onAuthStateChanged(user => {
-  console.log('user:', user)
-})
-
-// fire.auth().signInWithPopup(google)
-//   .then(result => {
-//     console.log('signed in:', result.credential.accessToken)
-//   })
-//   .catch(err => {
-//     console.error(err)
-//     console.error(err.message)
-//   })
-// fire.database().ref('/').set('hello')
-
-const Hello = () => <div>
-  <h1>Hi there.</h1>
-  <button>Sign in</button>
-</div>
 
 render(
   <Calendars />,
